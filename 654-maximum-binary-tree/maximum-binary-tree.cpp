@@ -25,10 +25,9 @@ public:
         // bc
         if (s > e) return NULL;
 
-        // ek case mai sambhalunga
-        // find greatest element index in curr range
+        
         int maxi = greatestElementIndex(s, e, nums);
-        // create node of maxi index
+      
         TreeNode* root = new TreeNode(nums[maxi]);
         
         // baaki rec sambhalega
@@ -39,38 +38,31 @@ public:
     }
 
     TreeNode* constructMaximumBinaryTree(vector<int>& nums) {
-        // // 01 approach - o(n2)
-        // int s = 0;
-        // int e = nums.size()-1;
+        
 
-        // return solve(s, e, nums);
-
-        // 02 approach - monotonic stack - o(n) - ** need to revise again **
+      
         stack<TreeNode*> st;
 
         for (auto num : nums) {
-            // create node of curr element
             TreeNode* newNode = new TreeNode(num);
 
-            // bigger element found in array
-            // if smaller than newNode are found in stack
-            // then connect newNode' left to stack node 
+          
             while (!st.empty() && st.top()->val < num){
                 // connect curr to stack's left
                 newNode->left = st.top();
                 st.pop();
             }
             
-            // stack not mepty means there is node in stack > num
+           
             if (!st.empty()) {
                 st.top()->right = newNode;
             }
 
-            // greater node found, push
+           
             st.push(newNode);
         }
 
-        // retrieve head of the tree
+        
         while (st.size() != 1) st.pop();
 
         return st.top();
