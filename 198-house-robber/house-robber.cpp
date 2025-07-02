@@ -1,22 +1,24 @@
 class Solution{
+    private:
+    int recurs(vector<int>& nums,vector<int>& dp,int ind){
+       if(ind==0){
+        return nums[ind];
+       }
+       if(ind<0){
+        return 0;
+       }
+       if(dp[ind]!=-1){
+        return dp[ind];
+       }
+       int pick = nums[ind]+recurs(nums,dp,ind-2);
+int notPick = 0+recurs(nums,dp,ind-1);
+return dp[ind]= max(pick , notPick);
+    }
 public:
     int rob(vector<int>& nums) {
-        int n = nums.size();
-        if (n == 0) return 0;
-        if (n == 1) return nums[0];
-
-        vector<int> dp(n);
-        dp[0] = nums[0];
-        dp[1] = max(nums[0], nums[1]);
-    
-     for(int i=2;i<n;i++){
-        int pick=dp[i-2]+nums[i];
-         int pick2=dp[i-1];
-         dp[i]=max(pick,pick2);
-
-     }
-     return dp[n-1];
-
+ int n =nums.size();
+vector<int>dp(n,-1);
+return recurs(nums,dp,n-1);
  }
 };
 
