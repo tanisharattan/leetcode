@@ -1,9 +1,9 @@
 class Solution {
 public:
     int characterReplacement(string s, int k) {
-        int n = s.length();
-        vector<int> freq(26, 0);
-        int left = 0;
+    int n = s.length();
+     vector<int> freq(26, 0);
+    int left = 0;
         int maxFreq = 0;
         int maxLength = 0;
 
