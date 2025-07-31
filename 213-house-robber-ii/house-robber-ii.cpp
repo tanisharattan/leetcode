@@ -12,7 +12,7 @@ class Solution {
         }
 
 int pick = nums[ind]+recurs(dp,nums,ind-2);
-int notPick = recurs(dp,nums,ind-1);
+int notPick = 0+recurs(dp,nums,ind-1);
 return dp[ind]= max(pick , notPick);
     }
 public:
