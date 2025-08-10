@@ -18,7 +18,21 @@ class Solution {
 public:
     int maxProfit(vector<int>& prices) {
         int n = prices.size();
-        vector<vector<vector<int>>>dp(n , vector<vector<int>>(2 , vector<int>( 3 ,-1)));
-        return find( dp , prices ,0 , 1 , 2);
+        vector<vector<vector<int>>>dp(n+1, vector<vector<int>>(2 , vector<int>( 3 ,0)));
+
+        for(int ind =n-1 ; ind>=0 ; ind--){
+            for(int buy=0;buy<=1 ;buy++){
+                for(int capacity =1;capacity<=2 ; capacity++){
+                       if(buy){
+     dp[ind][buy][capacity]= max(-prices[ind]+ dp[ind+1][0][capacity], 0+dp[ind+1][1][capacity]);
+
+  }
+  else {
+    dp[ind][buy][capacity]=max(prices[ind]+dp[ind+1][1][capacity-1],0+dp[ind+1][0][capacity]);
+  }
+                }
+            }
+        }
+ return dp[0][1][2];
     }
 };
