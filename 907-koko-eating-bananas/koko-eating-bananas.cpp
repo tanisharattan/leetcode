@@ -4,8 +4,7 @@ bool isValid(vector<int>& piles, int speed , int h ){
     int n = piles.size();
     long long hours=0;
     for(int i =0;i<n;i++){
-    hours += ceil((double)piles[i] / speed);
-
+     hours += (piles[i] + speed - 1) / speed;
 
     }
     if(hours>h){
